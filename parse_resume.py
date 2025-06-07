@@ -70,7 +70,7 @@ class Resume:
 
         for line in lines:
             # Remove leading bullet symbols and surrounding whitespace
-            cleaned_line = re.sub(r"^[•\-\*\u2022\s\●​]+", "", line).strip()
+            cleaned_line = re.sub(r"^[•◦\-\*\u2022\s\●​]+", "", line).strip()
 
             if not cleaned_line:
                 continue  # skip empty or bullet-only lines

@@ -31,12 +31,14 @@ def match_pattern(pattern, text):
             norm_regex += r'([^.,;:!?]+)'  # capture until punctuation
 
     # Do match on normalized string
+    #print(norm_text, "AHHHxs")
     if not re.match(norm_regex, norm_text):
         return None
 
     # Build parallel regex for original (non-normalized) text
     raw_parts = pattern.split('*')
     raw_regex = ''
+
     for i, part in enumerate(raw_parts):
         raw_regex += re.escape(part)
         if i < len(raw_parts) - 1:
