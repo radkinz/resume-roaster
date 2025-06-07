@@ -3,6 +3,9 @@
 education_roasts = {
     "bs in *": [
         lambda wc: f"A Bachelor's in {wc[1]}? Bold choice for job security."
+    ],
+    "* gpa *": [
+    lambda wc: f"Included your GPA — bold move. You must think it’s impressive."
     ]
 }
 
@@ -27,9 +30,9 @@ awards_roasts = {
 }
 
 publications_roasts = {
-    "* published *": [
-        lambda wc: f"Published in '{wc[1]}' — never heard of it, but I'll pretend to be impressed.",
-        lambda wc: f"You got published? So did my grocery list on the fridge."
+    "__any__": [
+        lambda: "Published? So you're better than the rest of us now?",
+        lambda: "You got published? So did my grocery list on the fridge."
     ]
 }
 
@@ -87,5 +90,6 @@ SECTION_PATTERN_RULES = {
     "projects": publications_roasts,
     "summary": {},  # can fill this in later
     "skills": skills_roasts,
-    "general": general_roasts
+    "general": general_roasts,
+    "publications": publications_roasts
 }

@@ -1,4 +1,5 @@
 import re
+import random
 
 def match_pattern(pattern, text):
     """
@@ -53,18 +54,22 @@ def apply_pattern_dict(pattern_dict, text):
     """
     Tries to match every pattern in pattern_dict to the given text.
     Returns list of generated roasts from any matches.
+    Randomly selects one roast per matched pattern.
     """
     results = []
+
     for pattern, lambdas in pattern_dict.items():
+        if pattern == "__any__":
+            continue
         wc = match_pattern(pattern, text)
         if wc:
-            for f in lambdas:
-                try:
-                    result = f([""] + wc)  # mimic 1-indexing of wc[1], wc[2], etc.
-                   
-                    if result:
-                        results.append(result)
-                except Exception:
-                    print("EXCEPTION")
-                    continue
+            try:
+                f = random.choice(lambdas)
+                result = f([""] + wc)  # mimic 1-indexing of wc[1], wc[2], etc.
+                if result:
+                    results.append(result)
+            except Exception:
+                print("EXCEPTION")
+                continue
+
     return results

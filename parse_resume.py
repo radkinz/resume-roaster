@@ -1,5 +1,7 @@
 import fitz  # PyMuPDF
+from PyPDF2 import PdfReader
 import re
+import sys
 
 SECTION_HEADERS = {
     "summary": re.compile(r"(summary|objective|about me|profile)", re.IGNORECASE),
@@ -7,6 +9,7 @@ SECTION_HEADERS = {
     "experience": re.compile(r"(experience)", re.IGNORECASE),
     "skills": re.compile(r"(skills|technologies|tools|competencies)", re.IGNORECASE),
     "awards": re.compile(r"(awards|honors|recognition|achievements)", re.IGNORECASE),
+    "publications": re.compile(r"(publications)", re.IGNORECASE),
     "certifications": re.compile(r"(certifications|certified|licenses)", re.IGNORECASE)
 }
 
@@ -20,11 +23,32 @@ class Resume:
         self._segment_sections()
 
     def _extract_text(self):
-        doc = fitz.open(self.file_path)
-        text = ""
-        for page in doc:
-            text += page.get_text() + "\n"
-        return text
+        try:
+            doc = fitz.open(self.file_path)
+            text = ""
+            for page in doc:
+                text += page.get_text() + "\n"
+            
+            #raise exception if parsing failed
+            if text == "": 
+                raise Exception("broken fizz")
+            
+            return text
+        except Exception as e:
+            print(f"[fitz] Failed to open PDF: {e}")
+            print("[fallback] Trying PyPDF2 instead...")
+
+            # Fallback: PyPDF2
+            try:
+                reader = PdfReader(self.file_path)
+                text = ""
+                for page in reader.pages:
+                    text += page.extract_text() or ""
+                return text
+            except Exception as e2:
+                print(f"[PyPDF2] Also failed to read PDF: {e2}")
+                raise RuntimeError("Could not extract text from PDF using any method.")
+
 
     def _normalize(self, text):
         return re.sub(r"[^a-zA-Z ]+", "", text).strip().lower()
@@ -91,7 +115,6 @@ class Resume:
 
 # Example usage
 if __name__ == "__main__":
-    import sys
     file = sys.argv[1]
     resume = Resume(file)
     resume.print_sections()

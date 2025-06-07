@@ -1,25 +1,28 @@
 from parse_resume import Resume
 from rules import SECTION_PATTERN_RULES
 from pattern_matcher import apply_pattern_dict
+import random
 
 def roast_resume_section(section_name, section_lines):
     section_rules = SECTION_PATTERN_RULES.get(section_name, {})
     general_rules = SECTION_PATTERN_RULES.get("general", {})
 
     roasts = []
-    for line in section_lines:
-        roasts += apply_pattern_dict(section_rules, line)
-        roasts += apply_pattern_dict(general_rules, line)
 
-    # Remove duplicates while preserving order
-    seen = set()
-    unique_roasts = []
-    for r in roasts:
-        if r not in seen:
-            seen.add(r)
-            unique_roasts.append(r)
-
-    return unique_roasts
+    if "__any__" in section_rules.keys():
+        try:
+            f = random.choice(section_rules["__any__"])
+            result = f()
+            if result:
+                roasts.append(result)
+        except Exception:
+            pass
+    else:
+        for line in section_lines:
+            roasts += apply_pattern_dict(section_rules, line)
+            roasts += apply_pattern_dict(general_rules, line)
+    
+    return roasts
 
 def roast_entire_resume(resume):
     print(f"\nRoasts for: {resume.file_path}")
