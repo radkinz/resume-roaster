@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Résumé Roaster</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Résumé Roaster</h1>
+        <p>Upload your résumé PDF — we’ll do the rest.</p>
+        <input type="file" id="pdf-upload" accept="application/pdf">
+        <button id="roast-button">Roast Me</button>
+        
+        <!-- List for displaying the roasts -->
+        <ul id="roast-list"></ul>
+    </div>
+
+    <!-- Load resume.js first (handles PDF extraction) -->
+    <script type="module" src="resume.js" defer></script>
+
+    <!-- Load roastRules.js second (contains roast patterns) -->
+    <script type="module" src="roastRules.js" defer></script>
+
+    <!-- Load script.js last (handles roasts and UI interaction) -->
+    <script type="module" src="script.js" defer></script>
+
+</body>
+
+</html>

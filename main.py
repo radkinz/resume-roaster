@@ -37,12 +37,15 @@ def roast_resume_section(section_name, section_lines):
     
     return roasts
 
-def roast_entire_resume(resume, max_roasts=5, seed=None):
+def roast_entire_resume(resume, max_roasts=5, seed=None, return_roasts=True):
     print(f"\nRoasts for: {resume.file_path}")
     print("=" * 50)
 
     all_roasts = []
     seen = set()
+
+    name = resume.extract_name() or resume.file_path
+    print(f"\nRoasts for: {name}")
 
     for section, lines in resume.sections_raw.items():
         roasts = roast_resume_section(section, lines)
@@ -56,6 +59,9 @@ def roast_entire_resume(resume, max_roasts=5, seed=None):
     for r in selected_roasts:
         print(f"• {r}")
     print()
+
+    if return_roasts:
+        return select_roasts
 
 # Command-line usage
 if __name__ == "__main__":

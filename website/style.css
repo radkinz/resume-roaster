@@ -1,0 +1,32 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #fdfaf6;
+    color: #2c2c2c;
+    padding: 2rem;
+  }
+  .wrapper {
+    max-width: 600px;
+    margin: auto;
+    border: 2px dashed #444;
+    padding: 2rem;
+    background: #fff;
+  }
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+  input[type="file"] {
+    margin-top: 1rem;
+  }
+  button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  ul {
+    margin-top: 2rem;
+    list-style-type: "🔥 ";
+  }

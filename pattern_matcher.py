@@ -9,8 +9,11 @@ def match_pattern(pattern, text):
     """
     def normalize(s):
         s = s.lower()
+        
         s = re.sub(r"\bbachelor('?s)?\b", "bs", s)
+        s = re.sub(r"\bbachelor of science\b", "bs", s)
         s = re.sub(r"\bb\s*\.?\s*s\.?\b", "bs", s)  # handles B.S., B S, B. S.
+       
         return s
 
     norm_pattern = normalize(pattern)

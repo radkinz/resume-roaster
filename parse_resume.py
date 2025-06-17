@@ -111,6 +111,42 @@ class Resume:
 
     def get_current_section(self):
         return self.current_section
+        
+    def extract_name(self):
+        """
+        Heuristically extract the candidate's name from the résumé text.
+        Skips common headers like 'Home Address' or location lines.
+        Returns the first plausible name (2-4 words, mostly capitalized).
+        """
+        import re
+
+        lines = [line.strip() for line in self.raw_text.splitlines() if line.strip()]
+        
+        for line in lines:
+            # Skip if line contains obvious non-name stuff
+            lowered = line.lower()
+            if any(keyword in lowered for keyword in [
+                "address", "phone", "email", "linkedin", "github", "website", "cambridge", "boston",
+                "massachusetts", "usa", "united states", "fax"
+            ]):
+                continue
+            if re.search(r"\d", line):  # skip lines with numbers (e.g. ZIP, phone)
+                continue
+            if "@" in line:  # skip emails
+                continue
+
+            # Match lines that are likely names:
+            # - 2 to 4 words long
+            # - each word is capitalized or all-caps
+            words = line.split()
+            if 1 < len(words) <= 4 and all(
+                word[0].isupper() or word.isupper() for word in words if word.isalpha()
+            ):
+                return line.title()  # Title-case it for display
+
+        return None
+
+
 
 
 # Example usage

@@ -45,16 +45,16 @@ experience_roasts = {
         lambda wc: "Research assistant — the unpaid labor tier of academia.",
         lambda wc: "Research assistant — as in, you assisted... by not breaking the equipment. Most of the time.",
     ],
-    "undergraduate researcher": [
+    "researcher": [
         lambda wc: "Undergraduate Researcher? Aka free labor with a fancy title.",
-        lambda wc: "Undergrad researcher — so you watered the petri dish and prayed.",
+        lambda wc: "student researcher — so you watered the petri dish and prayed.",
         lambda wc: "Undergraduate Researcher? You mean you held the flashlight for the grad student.",
         lambda wc: "Undergrad researcher — your job was mostly nodding while pretending to understand.",
         lambda wc: "Undergraduate Researcher? So you washed glassware and wrote 'collaborated on analysis'.",
         lambda wc: "Undergrad research — where 'troubleshooting' means emailing your PI twice and giving up.",
         lambda wc: "Most of your research was conducted the night before your presentation — and it shows.",
-        lambda wc: "Undergraduate Researcher? So you did nothing for two weeks, then scrambled before your PI meeting.",
-        lambda wc: "Ah yes, the undergrad researcher hustle: forget the assignment, panic at 11PM, present like nothing happened.",
+        lambda wc: "You did research? Meaning you did nothing for two weeks, then scrambled before your PI meeting.",
+        lambda wc: "Ah yes, the student researcher hustle: forget the assignment, panic at 11PM, present like nothing happened.",
     ]
 
 }
@@ -182,7 +182,7 @@ general_roasts = {
     ],
     "community engagement": [
         lambda wc: f"Community engagement — sounds like a class assignment you turned into a personality.",
-        lambda wc: "Community engagement? So you posted once on the club’s Instagram.",
+        lambda wc: "Community engagement? So you posted once on the club's Instagram.",
         lambda wc: "Community engagement — aka convincing three friends to show up to your event."
     ],
     "leadership": [
@@ -195,7 +195,12 @@ general_roasts = {
     lambda wc: "Public speaking? I bet you're fun at parties — if the party is a TEDxSalon about bullet journaling."
     ],
     "organized": [
-        lambda wc: "Organized? Color-coding your planner doesn’t count as a personality."
+        lambda wc: "Organized? Color-coding your planner doesn't count as a personality.",
+        lambda wc: "Organized? You bolded your section headers and called it a day.",
+        lambda wc: "Organized? You schedule your procrastination.",
+        lambda wc: "Organized? So is a junk drawer — full, labeled, and still a mess.",
+        lambda wc: "Organized — the kind of person who has a to-do list titled 'Make to-do list'.",
+        lambda wc: "Organized? Your desktop says otherwise.",
     ],
     "analytical": [
         lambda wc: "Analytical? Yeah, so is Excel — and it's way more fun at parties."
@@ -226,7 +231,52 @@ general_roasts = {
     "passionate": [
         lambda wc: "Passionate? So passionate you put it right next to 'proficient in Excel.'",
         lambda wc: "Passionate? That word is doing a lot of work for someone who copy-pasted their cover letter."
+    ],
+    "tutoring": [
+        lambda wc: "Tutoring? So you explained it once, badly, then gave them the answer.",
+        lambda wc: "Tutoring — aka doing the homework while pretending it's educational.",
+        lambda wc: "Tutored others? That's one way to pad a résumé with office hours you barely understood.",
+        lambda wc: "Tutoring experience? So you Googled it slightly faster than your student.",
+        lambda wc: "Tutoring? You mean you sat next to them while they suffered."
+    ],
+    "teaching assistant": [
+        lambda wc: "Teaching Assistant? You mean you held office hours no one attended.",
+        lambda wc: "TA? So you recited last year’s solutions with just enough confidence.",
+        lambda wc: "Teaching Assistant — the job where you answer the same question 40 times with a fake smile.",
+        lambda wc: "TA? You posted one Piazza announcement and felt like a professor.",
+        lambda wc: "Teaching Assistant? Bold move, considering you barely passed that class yourself.",
+        lambda wc: "TA duties: grade, suffer, repeat.",
+        lambda wc: "TA? So you hosted office hours, got ghosted, and called it mentorship.",
+        lambda wc: "Teaching Assistant? Sounds like you were the department’s unpaid emotional support."
+    ],
+    "lab assistant": [
+    lambda wc: "Lab Assistant? You mean you unlocked the door and waited for no one to show up.",
+    lambda wc: "Lab Assistant — so you nodded thoughtfully while Googling their question behind the screen.",
+    lambda wc: "Lab Assistant? AKA glorified plug-it-in-and-restart tech support.",
+    lambda wc: "Lab Assistant — you mean you hovered during office hours and prayed no one asked about edge cases.",
+    lambda wc: "Helping during office hours? You mean you repeated 'Did you try restarting your kernel?'"
+    ],
+    "office hours": [
+        lambda wc: "Office hours? You mean that hour of anxious silence broken by one panicked student at 9:58pm.",
+        lambda wc: "You held office hours? So you re-learned the material on the spot with the student.",
+        lambda wc: "Assisted during office hours — which mostly meant answering 'Is this due tonight?'",
+        lambda wc: "Office hours? You were just there to make sure the door didn't lock behind them."
+    ],
+    "graded": [
+        lambda wc: "Graded assignments? So you skimmed half and gave up when the handwriting got weird.",
+        lambda wc: "You graded homework? That's one way to relive the pain of the class you barely survived.",
+        lambda wc: "Grading — the ancient art of making a 6 look like a 10 out of pity.",
+        lambda wc: "Graded? You mean you flipped through looking for equations and gave a vibe-based score.",
+        lambda wc: "Graded exams? Bold of you to judge others from the moral high ground of a red pen."
+    ],
+    "grading": [
+        lambda wc: "Grading? So you got paid to suffer through bad handwriting and worse logic.",
+        lambda wc: "Grading — where 'partial credit' becomes a lifestyle choice.",
+        lambda wc: "You did grading? Nothing builds character like manually entering 40 zeros into Canvas.",
+        lambda wc: "Grading? So you spent more time deciphering scratch work than doing your own problem set.",
+        lambda wc: "Responsible for grading? You were emotionally responsible for some of those answers too."
     ]
+
 
 }
 
