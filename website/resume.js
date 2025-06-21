@@ -121,22 +121,46 @@ export class Resume {
     }
 
     // Extract candidate name (same logic as in Python)
+    // Function to extract candidate's name from the resume text
     extractName() {
-        const lines = this.rawText.split("\n").map(line => line.trim()).filter(line => line.length > 0);
+        // Split the text into lines based on multiple spaces or new lines
+        const lines = this.rawText.split(/\s{2,}|\n/)  // Split by 2+ spaces or line breaks
+            .map(line => line.trim())  // Clean up each line
+            .filter(line => line.length > 0);  // Remove empty lines
 
-        for (let line of lines) {
-            const lowered = line.toLowerCase();
-            if (["address", "phone", "email", "linkedin", "github"].some(keyword => lowered.includes(keyword))) {
-                continue;
+        // We will look at the first line for the name
+        const firstLine = lines[0];
+
+        // List of non-name terms we should exclude (e.g., "student", "university")
+        const nonNameTerms = [
+            "address", "phone", "email", "linkedin", "github", "website", 
+            "student", "university", "boston", "cambridge", "fax", "candidate", "engineer"
+        ];
+
+        // Split the first line into words
+        const words = firstLine.split(" ");
+        let nameParts = [];
+
+        // Go through each word in the first line and check if it's part of the name
+        for (let word of words) {
+            const lowerWord = word.toLowerCase();
+
+            // If the word is not in the non-name terms, add it to the name
+            if (!nonNameTerms.includes(lowerWord) && nameParts.length < 3) {
+                nameParts.push(word);
             }
 
-            if (/\d/.test(line) || /@/.test(line)) continue;
-
-            const words = line.split(" ");
-            if (words.length >= 2 && words.length <= 4 && words.every(word => word[0].toUpperCase() === word[0])) {
-                return line; // Return as is if it looks like a name
+            // Stop once we have 3 words
+            if (nameParts.length === 3) {
+                break;
             }
         }
-        return null;
+
+        // Return the name (join the parts together)
+        return nameParts.join(" ") || null;  // Return the name, or null if not found
     }
+
+
+
+
 }
