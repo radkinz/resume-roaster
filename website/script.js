@@ -80,14 +80,8 @@ function roastResumeSection(sectionName, sectionLines) {
 // Function to roast the entire resume
 // Function to roast the entire resume
 function roastEntireResume(resume, seed = null) {
-    console.log(`\nRoasts for: ${resume.filePath}`);
-    console.log("=" * 50);
-
     let allRoasts = [];
     let roastCountPerSection = {};  // Track the number of roasts per section
-
-    const name = resume.extractName() || resume.filePath;
-    console.log(`\nRoasts for: ${name}`);
 
     // Iterate through sections and roast each one
     for (const section in resume.sectionsRaw) {
@@ -97,12 +91,8 @@ function roastEntireResume(resume, seed = null) {
         // Get the number of roasts to select for this section from roastsPerSection
         const roastsToSelect = roastsPerSection[section] || 1;
 
-        console.log(`Available roasts for ${section}:`, roasts);  // Debugging line
-
         // Limit the number of roasts for this section
         const selectedRoasts = selectRoasts(roasts, roastsToSelect, seed);
-
-        console.log(`Selected roasts for ${section}:`, selectedRoasts);  // Debugging line
 
         // Track how many roasts we've added for each section
         if (!roastCountPerSection[section]) {
@@ -111,7 +101,6 @@ function roastEntireResume(resume, seed = null) {
 
         // Add the selected roasts from this section to the allRoasts array
         selectedRoasts.forEach(roast => {
-            // Only add roast if we haven't already added the maximum number for this section
             if (roastCountPerSection[section] < roastsToSelect) {
                 roastCountPerSection[section] += 1;  // Increment the roast count for this section
                 allRoasts.push(roast);      // Add the roast to the list
@@ -120,24 +109,58 @@ function roastEntireResume(resume, seed = null) {
     }
 
     // Display selected roasts on the webpage
-    displayRoastsOnPage(allRoasts);
+    //displayRoastsOnPage(allRoasts);
+
+    // Display the business card with roasts
+    displayBusinessCard(allRoasts, resume.extractName());
 
     return allRoasts;  // Return selected roasts for use elsewhere (e.g., in the UI)
 }
 
 
+
 // Function to display selected roasts on the webpage
 function displayRoastsOnPage(roasts) {
-    const roastList = document.getElementById("roast-list"); // Get the unordered list
+    const roastList = document.getElementById("roast-list");
     roastList.innerHTML = ''; // Clear any previous roasts before adding new ones
 
     // Add each roast as a list item in the unordered list
     roasts.forEach(roast => {
-        const listItem = document.createElement("li"); // Create a new <li> element
-        listItem.textContent = roast; // Set the roast text (ensure roast is a string)
+        const listItem = document.createElement("li");
+        listItem.textContent = roast;  // Make sure this is just the roast text, not an object
         roastList.appendChild(listItem); // Append the <li> to the list
     });
 }
+
+function displayBusinessCard(roasts, name) {
+    const card = document.getElementById("business-card");
+    const cardName = document.getElementById("card-name");
+    const cardRoastList = document.getElementById("card-roast-list");
+
+    // Remove the 'hidden' class to make the business card visible
+    card.classList.remove("hidden");
+    card.classList.add("show");  // Add the 'show' class to display the card
+
+    // Set the name on the business card
+    cardName.textContent = name || "Your Name";
+
+    // Add each roast as a list item in the business card's unordered list
+    cardRoastList.innerHTML = ''; // Clear any existing roasts in the card
+
+    roasts.forEach(roast => {
+        const listItem = document.createElement("li");
+        listItem.textContent = roast;  // Set the roast text
+        cardRoastList.appendChild(listItem); // Append the <li> to the list
+    });
+}
+
+// Function to format the roasts (you can adjust how this looks)
+function formatRoasts(roasts) {
+    return roasts.join("\n");  // Join all roasts into a string with each roast on a new line
+}
+
+
+
 // Example usage: Trigger roasting when a resume is uploaded
 async function handleRoast() {
     const fileInput = document.getElementById("pdf-upload");
@@ -155,6 +178,7 @@ async function handleRoast() {
     // Perform roasting on the entire resume
     roastEntireResume(resume);
 }
+
 
 // Bind the roast button to trigger the roast process
 document.getElementById("roast-button").addEventListener("click", handleRoast);

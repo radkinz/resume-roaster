@@ -11,12 +11,24 @@
 <body>
     <div class="wrapper">
         <h1>Résumé Roaster</h1>
-        <p>Upload your résumé PDF — we’ll do the rest.</p>
-        <input type="file" id="pdf-upload" accept="application/pdf">
-        <button id="roast-button">Roast Me</button>
-        
+        <p>Upload your résumé PDF — we’ll roast you and create a custom business card!</p>
+
+        <!-- Resume upload section -->
+        <div class="upload-section">
+            <input type="file" id="pdf-upload" accept="application/pdf">
+            <button id="roast-button">Roast Me</button>
+        </div>
+
         <!-- List for displaying the roasts -->
         <ul id="roast-list"></ul>
+
+        <!-- Business card container (Initially hidden) -->
+        <div id="business-card" class="business-card hidden">
+            <h2 id="card-name">Name Here</h2>
+            <ul id="card-roast-list">
+                <!-- The roasts will be dynamically added here -->
+            </ul>
+        </div>
     </div>
 
     <!-- Load resume.js first (handles PDF extraction) -->
