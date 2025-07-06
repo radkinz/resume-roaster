@@ -1,6 +1,7 @@
 import { Resume } from './resume.js';  // Import the Resume class from resume.js
 import { educationRoasts, experienceRoasts, skillsRoasts, generalRoasts, awardsRoasts, publicationsRoasts } from './roastRules.js';  // Import roast rules from roastRules.js
 import { applyPatternDict } from './roastRules.js';  // Import the pattern matching function
+import { generateStats } from './resume.js';
 
 // Define the SECTION_PATTERN_RULES for each section
 const SECTION_PATTERN_RULES = {
@@ -177,6 +178,10 @@ async function handleRoast() {
 
     // Perform roasting on the entire resume
     roastEntireResume(resume);
+    console.log(resume.sectionsText, "TEXT")
+
+    const statsBySection = await generateStats(resume.sectionsText, resume.extractName());
+    console.log(statsBySection, "STATS")
 }
 
 
