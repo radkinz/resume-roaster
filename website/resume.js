@@ -365,34 +365,70 @@ export function generateStats(textBySection, name) {
 }
 
 export const personaNames = {
-    academia: [
-      "Publication Leech",       // Author 12th on a 3-person paper
-      "Research Goblin",         // Crawls between labs collecting data and crumbs
-      "Grant-Licker"             // Uses “funded by” like a flex
-    ],
-    gpa: [
-      "Transcript Thirst Trap",  // Gave GPA its own line *and* bold text
-      "Grade-Clinger",           // Still holding onto that 3.99 like it’s a lifeboat
-    ],
-    industry: [
-      "Corporate Sleeper Agent", // Interned at 4 FAANGs and still calls it “impact”
-      "Work Experience Maxxer",  // Had 3 jobs *last summer*
-      "Most likely to sell out" 
-    ],
-    leadership: [
-      "Ego with a Club Budget",  // Founded 2 orgs and a personal brand
-      "Dictator of the Group Chat",     // “President” of 12-person Slack channel
-      "Not so secretly power hungry"     
-    ],
-    skills: [
-      "Executive of Insecurity",      // Lists Bash *and* Zsh. Calm down.
-      "Buzzword Bloodbath",      // Synergy. Blockchain. AI. Marketing. Huh?
-      "Jack of all keywords"       // VIM. Docker. GCC. QEMU. Therapist?
-    ],
+    academia: {
+        names: [
+            "Publication Leech",       // Author 12th on a 3-person paper
+            "Research Goblin",         // Crawls between labs collecting data and crumbs
+            "Grant-Licker"],
+        condition: stats => stats.experience?.jobTypes?.research >= 2 &&
+            stats.experience?.jobTypes?.research >= (stats.experience?.numJobs || 1) * 0.5
+    },
+    gpa: {
+        names: [
+            "Transcript Thirst Trap",  // Gave GPA its own line *and* bold text
+            "Grade-Clinger",
+        ],
+        condition: stats => typeof stats.education?.highestGPA === "number"
+    },
+    industry: {
+        names: [
+            "Corporate Sleeper Agent",   // Interned at 4 FAANGs and still calls it “impact”
+            "Work Experience Maxxer",    // Had 3 jobs *last summer*
+            "Most Likely to Sell Out"    // Résumé smells faintly of stock options
+        ],
+        condition: stats =>
+            stats.experience?.jobTypes?.internship >= 2
+    },
+    leadership: {
+        names: [
+            "Ego with a Club Budget",        // Founded 2 orgs and a personal brand
+            "Dictator of the Group Chat",    // “President” of 12-person Slack channel
+            "Not So Secretly Power Hungry"   // Probably runs a Discord server like a nation-state
+        ],
+        condition: stats =>
+            stats.experience?.leadershipMentions >= 3
+    },
+    skills: {
+        names: [
+            "Executive of Insecurity",   // Lists Bash *and* Zsh. Calm down.
+            "Buzzword Bloodbath",        // Synergy. Blockchain. AI. Marketing. Huh?
+            "Jack of All Keywords"       // Everything from Docker to “storytelling”
+        ],
+        condition: stats =>
+            stats.skills?.total >= 20
+    }
+    ,
     fallback: [
-      "Résumé Salad",            // A bunch of stuff. Not sure it’s food.
-      "PDF of Vibes",            // No idea what they do, but they’re doing it loud
-      "LinkedIn Mid"             // The energy is there. The experience is not.
+        "Résumé Salad",            // A bunch of stuff. Not sure it’s food.
+        "PDF of Vibes",            // No idea what they do, but they’re doing it loud
+        "LinkedIn Mid"             // The energy is there. The experience is not.
     ]
-  };
+};
+
+export function pickPersonaName(stats, personaNames) {
+    const categories = Object.entries(personaNames)
+      .filter(([key]) => key !== 'fallback'); // skip fallback category
+  
+    const eligible = categories
+      .filter(([, { condition }]) => condition(stats));
+  
+    if (eligible.length > 0) {
+      const { names } = eligible[Math.floor(Math.random() * eligible.length)][1];
+      return names[Math.floor(Math.random() * names.length)];
+    }
+  
+    // fallback if no conditions match
+    const fallback = personaNames.fallback;
+    return fallback[Math.floor(Math.random() * fallback.length)];
+  }
   

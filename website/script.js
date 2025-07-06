@@ -2,6 +2,7 @@ import { Resume } from './resume.js';  // Import the Resume class from resume.js
 import { educationRoasts, experienceRoasts, skillsRoasts, generalRoasts, awardsRoasts, publicationsRoasts } from './roastRules.js';  // Import roast rules from roastRules.js
 import { applyPatternDict } from './roastRules.js';  // Import the pattern matching function
 import { generateStats } from './resume.js';
+import { personaNames, pickPersonaName } from './resume.js';
 
 // Define the SECTION_PATTERN_RULES for each section
 const SECTION_PATTERN_RULES = {
@@ -80,7 +81,7 @@ function roastResumeSection(sectionName, sectionLines) {
 
 // Function to roast the entire resume
 // Function to roast the entire resume
-function roastEntireResume(resume, seed = null) {
+async function roastEntireResume(resume, seed = null) {
     let allRoasts = [];
     let roastCountPerSection = {};  // Track the number of roasts per section
 
@@ -112,8 +113,14 @@ function roastEntireResume(resume, seed = null) {
     // Display selected roasts on the webpage
     //displayRoastsOnPage(allRoasts);
 
+    const statsBySection = await generateStats(resume.sectionsText, resume.extractName());
+    console.log(statsBySection, "STATS")
+
+    const selectedRoast = pickPersonaName(statsBySection, personaNames);
+    console.log("Your roast:", selectedRoast);
+
     // Display the business card with roasts
-    displayBusinessCard(allRoasts, resume.extractName());
+    displayBusinessCard(allRoasts, resume.extractName, selectedRoast);
 
     return allRoasts;  // Return selected roasts for use elsewhere (e.g., in the UI)
 }
@@ -133,7 +140,7 @@ function displayRoastsOnPage(roasts) {
     });
 }
 
-function displayBusinessCard(roasts, name) {
+function displayBusinessCard(roasts, name, nameRoast) {
     const card = document.getElementById("business-card");
     const cardName = document.getElementById("card-name");
     const cardRoastList = document.getElementById("card-roast-list");
@@ -143,7 +150,8 @@ function displayBusinessCard(roasts, name) {
     card.classList.add("show");  // Add the 'show' class to display the card
 
     // Set the name on the business card
-    cardName.textContent = name || "Your Name";
+    cardName.textContent = `${name || "Your Name"} aka ${nameRoast}`;
+
 
     // Add each roast as a list item in the business card's unordered list
     cardRoastList.innerHTML = ''; // Clear any existing roasts in the card
@@ -179,9 +187,6 @@ async function handleRoast() {
     // Perform roasting on the entire resume
     roastEntireResume(resume);
     console.log(resume.sectionsText, "TEXT")
-
-    const statsBySection = await generateStats(resume.sectionsText, resume.extractName());
-    console.log(statsBySection, "STATS")
 }
 
 
