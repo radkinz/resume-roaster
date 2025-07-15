@@ -1,12 +1,12 @@
 /* General Styles */
 :root {
     --primary-color: #6a9fb5;  /* Pastel Blue */
-    --accent-color: #ff8fa3;   /* Soft Pastel Pink */
+    --accent-color: #7ab0c8;   /* Soft Pastel Pink */
     --background-color: #e0f7fa;  /* Light Pastel Blue (background) */
-    --text-color: #333;  /* Dark text color for contrast */
-    --button-color: #ff8fa3;  /* Soft Pink button background */
+    --text-color: #000000;  /* Dark text color for contrast */
+    --button-color: #7ab0c8;  /* Soft Pink button background */
     --button-hover-color: #ff5a75;  /* Slightly darker pink on hover */
-    --business-card-bg: #f0e5ff;  /* Very light lavender for business card background */
+    --business-card-bg: #ffffff;  /* Very light lavender for business card background */
     --card-border-color: #6a9fb5;  /* Soft blue border for the card */
     --list-item-bg: #fce4ec;  /* Light pink for list items */
     --highlight-color: #b3e5fc;  /* Light blue for highlighted text */
@@ -15,14 +15,22 @@
     --font-family: "Pixelify Sans", sans-serif;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
 /* General Styles */
 body {
     font-family: var(--font-family);  /* Use the pixelated font */
-    background-color: var(--background-color);  /* Light background color */
     color: var(--text-color);  /* Dark text color for contrast */
-    margin: 0;
-    padding: 0;
     font-size: var(--font-size);  /* Standard font size */
+    background-image: url('assets/cloud.png'); /* relative to your HTML file */
+    background-size: cover;                 /* ensures full coverage */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;           /* optional parallax effect */
 }
 
 /* Wrapper to center everything and add some space */
@@ -34,10 +42,19 @@ body {
     text-align: center;
 }
 
+.header {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
 /* Styling for the upload section */
 .upload-section {
     background-color: #ffffff;  /* White background for the upload section */
-    padding: 30px;
+    padding-bottom: 20px;
+    width: 100%;
     border-radius: 15px;
     border: 2px solid var(--primary-color);  /* Indie orange border */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -47,7 +64,7 @@ body {
 
 .upload-section input[type="file"],
 .upload-section button {
-    padding: 15px 30px;
+    padding: 15px 20px;
     margin-top: 20px;
     font-size: 18px;
     border: 2px solid var(--primary-color);  /* Button border color */
@@ -81,18 +98,19 @@ ul li {
 .business-card {
     display: none; /* Hidden by default */
     width: 100%;
+    margin: 0;
     max-width: 600px;
-    margin: 40px auto;  /* Centered with margin */
-    padding: 20px;
-    background-color: var(--business-card-bg);  /* Off-white background for the card */
-    border: 2px solid var(--card-border-color);  /* Indie orange border for the card */
+    padding-bottom: 20px;
+    background-color: #ffffff;  /* White background for consistency */
+    border: 2px solid var(--primary-color);  /* Same border as upload section */
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Same shadow as upload section */
 }
 
 .business-card.show {
     display: block;  /* Make the business card visible */
 }
+
 
 .business-card h2 {
     font-size: var(--large-font-size);  /* Larger font size for the name */
@@ -108,7 +126,9 @@ ul li {
 
 .business-card ul {
     list-style-type: disc; /* Bullet points for the roasts */
-    padding-left: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+
     text-align: left;
     font-size: 20px;
 }
@@ -136,3 +156,4 @@ button {
 button:hover {
     background-color: var(--accent-color);
 }
+
