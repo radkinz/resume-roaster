@@ -25,6 +25,7 @@ const roastsPerSection = {
 
 // --- Utility ---
 function selectRoasts(roasts, maxCount, seed = null) {
+    console.log(roasts, "ROASTS")
     if (seed !== null) Math.seedrandom(seed);
     const copy = [...roasts];
     const selected = [];
@@ -67,7 +68,13 @@ class BusinessCard {
         card.classList.remove("hidden");
         card.classList.add("show");
 
-        const displayName = `${this.name} aka ${this.persona}`;
+        var displayName = `${this.name} aka ${this.persona}`;
+
+        console.log(this.name)
+
+        if (this.name == "Your Name") {
+            displayName = this.persona
+        }
         cardName.textContent = displayName;
 
         cardRoastList.innerHTML = '';

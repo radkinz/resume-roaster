@@ -274,14 +274,12 @@ export function generateStats(textBySection, name) {
 
     for (let i = 0; i < words.length; i++) {
         const word = words[i].toLowerCase();  // Convert word to lowercase for case-insensitive matching
-        console.log(word, currentSkills, collectingSkills)
         // Check if the word matches a section header (e.g., "Skills:" or "Programming:")
         skillSections.forEach(section => {
             // Match the section keyword (e.g., "skills" or "skills and interests") followed by a colon
             if ((word === section && words[i + 1] === ":") || (word === `${section}:`)) {
                 // We found the section header (e.g., "skills:", "programming:"), start collecting skills after this point
                 collectingSkills = true;
-                console.log(currentSkills, "YGTRIUGRIFJIJxs")
                 currentSkills = "";  // Reset the current skills string
             }
         });
@@ -339,7 +337,6 @@ export function generateStats(textBySection, name) {
         buzzwords: buzzwordsFound
     };
 
-    console.log(stats.skills);
 
     // ----- Awards -----
     const awardsText = textBySection.awards || "";

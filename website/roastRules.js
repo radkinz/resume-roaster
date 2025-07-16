@@ -83,6 +83,96 @@ export const skillsRoasts = {
         wc => "SolidWorks expert? So you know how to make a gear... and crash a file.",
         wc => "SolidWorks? Cool. Hope your laptop's fan is still alive.",
         wc => "SolidWorks — where Ctrl+S becomes muscle memory after every sketch."
+    ],
+    "excel": [
+        wc => "Excel wizard? Can you make a pivot table, or just scroll endlessly?",
+        wc => "Excel skills? If it’s not an Excel formula, it’s just the default column letters.",
+        wc => "Excel? I hope you know your VLOOKUPs and don't just click buttons and pray."
+    ],
+    "autocad": [
+        wc => "AutoCAD — because who needs paper when you can just print directly from your computer?",
+        wc => "AutoCAD? Yeah, just a quick way to pretend you're not drowning in layers.",
+        wc => "AutoCAD, eh? Bet you love working with 2D lines that never seem to align."
+    ],
+    "photoshop": [
+        wc => "Photoshop? So you're an expert at cropping and slapping a filter on everything?",
+        wc => "Photoshop skills: You probably think 'Layer Mask' is some kind of magic trick.",
+        wc => "Photoshop? Sure, if you mean transforming people into abstract art on Instagram."
+    ],
+    "blender": [
+        wc => "Blender skills? Ah yes, the art of crashing your PC while trying to render something simple.",
+        wc => "Blender — because who needs ease when you can just be confused for hours?",
+        wc => "Blender? Oh, so you’ve made a donut tutorial your life goal."
+    ],
+    "leadership": [
+        wc => "Leadership skills? Can you actually lead a team, or just send motivational quotes?",
+        wc => "Leadership? More like 'keeping the chair warm' while others do the real work.",
+        wc => "Leadership? Sure, if you mean organizing meetings that could’ve been emails."
+    ],
+    "teamwork": [
+        wc => "Teamwork? Are you sure you’re not just excellent at taking credit for others' ideas?",
+        wc => "Teamwork skills: You can communicate... as long as the ideas are your own.",
+        wc => "Teamwork? Oh, you mean the ability to look busy while someone else carries the load."
+    ],
+    "communication": [
+        wc => "Communication? I hope that means you actually listen and don’t just talk for the sake of talking.",
+        wc => "Communication skills? You mean you can send an email without sounding like a robot?",
+        wc => "Communication? How well do you handle the 'reply-all' chaos?"
+    ],
+    "project management": [
+        wc => "Project management? You must be great at managing things… that never get finished.",
+        wc => "Project management: A skill? Or just a fancy title for 'I’m in charge of the chaos.'",
+        wc => "Project management? Oh, so you mean you’re an expert at scheduling meetings that don’t lead anywhere."
+    ],
+    "organized": [
+        wc => "Organizational skills? More like 'I can make a to-do list and never look at it again.'",
+        wc => "Organization? I bet your desk is a disaster but your digital files are worse.",
+        wc => "Organizational skills — because everything needs a folder... even the stuff you’ll never use."
+    ],
+    "leadership": [
+        wc => "Leadership? Sure, if you count putting out fires that you started yourself.",
+        wc => "Leadership? Oh, you mean how to nod at meetings without making any decisions?",
+        wc => "Leadership? That’s a funny way of saying you delegate everything but the blame."
+    ],
+    "led": [
+        wc => "Leadership? Sure, if you count putting out fires that you started yourself.",
+        wc => "Leadership? Oh, you mean how to nod at meetings without making any decisions?",
+        wc => "Leadership? That’s a funny way of saying you delegate everything but the blame."
+    ],
+    "collaborated": [
+        wc => "Collaboration? Oh, you mean passive-aggressively editing someone else’s work?",
+        wc => "Collaboration skills? Can you actually compromise, or do you just fight for your idea?",
+        wc => "Collaboration? If by that you mean waiting for someone else to take the lead, sure."
+    ],
+    "javascript": [
+        wc => "JavaScript? Did you just google 'how to use JS' and call it a skill?",
+        wc => "JavaScript? You probably just copy-pasted that code and pretended you understood it.",
+        wc => "JavaScript? Yeah, if by 'programming' you mean fixing console.log errors all day."
+    ],
+    "html": [
+        wc => "HTML? I hope your 'skills' extend beyond h1 tags and divs.",
+        wc => "HTML? So you can use <b> and <i> in your code... how revolutionary.",
+        wc => "HTML skills — bet you think closing tags are optional, huh?"
+    ],
+    "css": [
+        wc => "CSS skills? Is that just 'make it look pretty until it breaks on mobile'?",
+        wc => "CSS? More like 'I know how to change colors and hide elements.'",
+        wc => "CSS skills? I bet your 'responsive design' doesn’t work on anything except your laptop screen."
+    ],
+    "swift": [
+        wc => "Swift? So you’ve spent years optimizing for the iPhone... but only on paper.",
+        wc => "Swift — great for making things run... right until it doesn’t.",
+        wc => "Swift? Hope you can avoid a crash, both the app and your hopes for the future."
+    ],
+    "kotlin": [
+        wc => "Kotlin? Ah yes, the programming language that made Android development more complicated.",
+        wc => "Kotlin? So you can use a language that’s almost Java... but not quite.",
+        wc => "Kotlin skills? Bet you use it because it makes you feel cooler than using Java."
+    ],
+    "java": [
+        wc => "Java? Cool, you know how to write a million lines of code to do something simple.",
+        wc => "Java? Ah yes, the language where every project feels like it could be a university course.",
+        wc => "Java? So, you like to explain why it takes forever to run, but then blame everything else."
     ]
 };
 
