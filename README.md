@@ -39,3 +39,9 @@ The project deliberately avoids machine learning in favor of:
 git clone https://github.com/radkinz/resume-roaster.git
 cd resume-roaster
 python3 -m http.server
+```
+---
+
+## Example Roast
+
+![Resume Roaster screenshot](roast-screenshot.png)
